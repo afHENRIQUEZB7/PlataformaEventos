@@ -42,7 +42,7 @@
                                 </h3>
 
                                 <div class="font-weight-light text-h6 mb-2">
-                                    {{ item.raw.descripcion }}
+                                    {{ truncatedDescription(item.raw.descripcion) }}
                                 </div>
                             </v-card-text>
                             <div class="d-flex justify-space-between px-4">
@@ -119,6 +119,14 @@ const Evento = (id: number) => {
 
 const openDialogCreate = () => {
   store.dispatch('openDialogCreate');
+};
+
+const truncatedDescription = (description: string) => {
+  const maxLength = 100;
+  if (description.length > maxLength) {
+    return description.substring(0, maxLength) + '...';
+  }
+  return description;
 };
 
 </script>
